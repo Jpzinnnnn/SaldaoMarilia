@@ -1,0 +1,287 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+
+  &.scrolled {
+    .navbar {
+      background: rgba(10, 10, 10, 0.97);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 4px 30px rgba(255, 214, 0, 0.15);
+      padding: 0.6rem 0;
+    }
+
+    .header-top {
+      display: none;
+    }
+  }
+}
+
+.header-top {
+  background: var(--yellow);
+  color: var(--black);
+  font-family: var(--font-condensed);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 0.4rem 0;
+  transition: all 0.3s ease;
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+
+    span {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+
+      i {
+        font-size: 0.75rem;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.navbar {
+  background: var(--black);
+  padding: 1rem 0;
+  transition: all 0.3s ease;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+}
+
+.logo {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  user-select: none;
+
+  .logo-saldao {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    color: var(--yellow);
+    letter-spacing: 0.04em;
+    line-height: 0.9;
+  }
+
+  .logo-marilia {
+    font-family: var(--font-condensed);
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: var(--white);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+  }
+
+  .logo-tag {
+    font-family: var(--font-condensed);
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--black);
+    background: var(--yellow);
+    padding: 0.1rem 0.4rem;
+    margin-top: 0.2rem;
+    display: inline-block;
+    align-self: flex-start;
+  }
+
+  &:hover .logo-saldao {
+    text-shadow: 0 0 20px rgba(255, 214, 0, 0.6);
+  }
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 0.25rem;
+  align-items: center;
+
+  @media (max-width: 900px) {
+    display: none;
+  }
+
+  .nav-link {
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-300);
+    cursor: pointer;
+    padding: 0.5rem 0.9rem;
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 0.9rem;
+      right: 0.9rem;
+      height: 2px;
+      background: var(--yellow);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    &:hover {
+      color: var(--yellow);
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+  }
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn-ofertas {
+  font-size: 0.9rem;
+  padding: 0.7rem 1.5rem;
+
+  @media (max-width: 900px) {
+    display: none;
+  }
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+
+  @media (max-width: 900px) {
+    display: flex;
+  }
+
+  span {
+    display: block;
+    height: 2px;
+    background: var(--yellow);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+
+  &.active {
+    span:nth-child(1) {
+      transform: translateY(9px) rotate(45deg);
+    }
+    span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    span:nth-child(3) {
+      transform: translateY(-9px) rotate(-45deg);
+    }
+  }
+}
+
+.mobile-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 998;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  &.active {
+    display: block;
+    opacity: 1;
+  }
+}
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 80%;
+  max-width: 300px;
+  height: 100vh;
+  background: var(--black);
+  border-left: 3px solid var(--yellow);
+  z-index: 999;
+  padding: 5rem 2rem 2rem;
+  transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-direction: column;
+  gap: 2rem;
+
+  @media (max-width: 900px) {
+    display: flex;
+  }
+
+  &.active {
+    right: 0;
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    li a {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white);
+      cursor: pointer;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+
+      i {
+        color: var(--yellow);
+        width: 20px;
+      }
+
+      &:hover {
+        background: rgba(255, 214, 0, 0.1);
+        color: var(--yellow);
+        padding-left: 1.5rem;
+      }
+    }
+  }
+
+  .btn-primary {
+    width: 100%;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+}

@@ -1,0 +1,9 @@
+<div class="whatsapp-float" [class.visible]="isVisible" (mouseenter)="showTooltip=true" (mouseleave)="showTooltip=false">
+  <div class="tooltip" [class.show]="showTooltip">
+    Fale conosco! 👋
+  </div>
+  <button class="float-btn" (click)="openWhatsapp()" aria-label="Chamar no WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="pulse-ring"></span>
+  </button>
+</div>

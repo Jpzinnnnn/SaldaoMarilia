@@ -1,0 +1,65 @@
+<section class="about" id="sobre">
+  <div class="container">
+    <div class="about-grid">
+      <!-- Image Side -->
+      <div class="about-visual reveal-left">
+        <div class="visual-stack">
+          <img
+            src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=600&q=80"
+            alt="Loja Saldão Marília"
+            class="about-img main-img"
+          />
+          <img
+            src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=400&q=80"
+            alt="Produtos Saldão"
+            class="about-img secondary-img"
+          />
+          <div class="years-badge">
+            <span class="years-num">10+</span>
+            <span class="years-text">Anos no Mercado</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Text Side -->
+      <div class="about-text reveal-right">
+        <span class="section-label">Sobre Nós</span>
+        <h2 class="section-title about-title">
+          A MELHOR MODA DE <span class="text-yellow">MARÍLIA</span>
+        </h2>
+
+        <p class="about-desc">
+          A <strong>Saldão Marília</strong> é uma loja especializada em roupas e acessórios
+          com preços acessíveis. Trabalhamos com moda masculina, feminina e infantil,
+          sempre trazendo novidades e promoções para nossos clientes.
+        </p>
+
+        <p class="about-desc">
+          Localizada no coração de Marília, nossa loja oferece uma grande variedade de produtos
+          com o melhor custo-benefício da região. Nossa missão é vestir você e sua família
+          com qualidade e preço justo!
+        </p>
+
+        <div class="features-grid">
+          <div class="feature" *ngFor="let f of features">
+            <div class="feature-icon">
+              <i [class]="f.icon"></i>
+            </div>
+            <div class="feature-text">
+              <h4>{{ f.title }}</h4>
+              <p>{{ f.desc }}</p>
+            </div>
+          </div>
+        </div>
+
+        <a
+          href="https://wa.me/5514991677085?text=Olá!%20Gostaria%20de%20conhecer%20mais%20a%20loja!"
+          target="_blank"
+          class="btn-primary"
+        >
+          <i class="fab fa-whatsapp"></i> Fale Conosco
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

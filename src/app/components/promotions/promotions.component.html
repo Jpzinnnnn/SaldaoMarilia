@@ -1,0 +1,87 @@
+<section class="promotions" id="promocoes">
+  <!-- Section Header -->
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Ofertas Imperdíveis</span>
+      <h2 class="section-title text-white">
+        PROMOÇÕES <span class="text-yellow">EXPLOSIVAS</span>
+      </h2>
+    </div>
+
+    <!-- Countdown Banner -->
+    <div class="countdown-banner reveal">
+      <div class="countdown-left">
+        <i class="fas fa-clock pulse-icon"></i>
+        <div>
+          <span class="countdown-title">OFERTA RELÂMPAGO</span>
+          <span class="countdown-sub">Termina hoje à meia-noite!</span>
+        </div>
+      </div>
+      <div class="countdown-timer">
+        <div class="time-block">
+          <span class="time-num">{{ pad(timeLeft.hours) }}</span>
+          <span class="time-label">horas</span>
+        </div>
+        <span class="time-sep">:</span>
+        <div class="time-block">
+          <span class="time-num">{{ pad(timeLeft.minutes) }}</span>
+          <span class="time-label">min</span>
+        </div>
+        <span class="time-sep">:</span>
+        <div class="time-block">
+          <span class="time-num">{{ pad(timeLeft.seconds) }}</span>
+          <span class="time-label">seg</span>
+        </div>
+      </div>
+      <button class="btn-primary" (click)="openWhatsapp()">
+        <i class="fas fa-bolt"></i> Aproveitar!
+      </button>
+    </div>
+
+    <!-- Promo Banners Grid -->
+    <div class="banners-grid">
+      <div
+        class="promo-banner reveal"
+        *ngFor="let banner of banners; let i = index"
+        [class]="'promo-banner ' + banner.bg"
+        [style.animation-delay]="(i * 0.15) + 's'"
+      >
+        <div class="banner-icon">
+          <i [class]="banner.icon" [style.color]="banner.color"></i>
+        </div>
+        <div class="banner-content">
+          <h3 class="banner-title">{{ banner.title }}</h3>
+          <span class="banner-subtitle">{{ banner.subtitle }}</span>
+          <p class="banner-desc">{{ banner.description }}</p>
+        </div>
+        <button class="banner-cta" (click)="openWhatsapp()">
+          {{ banner.cta }} <i class="fas fa-arrow-right"></i>
+        </button>
+        <div class="banner-deco"></div>
+      </div>
+    </div>
+
+    <!-- Highlight Strip -->
+    <div class="highlights-strip reveal">
+      <div class="highlight">
+        <i class="fas fa-truck"></i>
+        <span>Retirada na Loja</span>
+      </div>
+      <div class="divider"></div>
+      <div class="highlight">
+        <i class="fas fa-shield-alt"></i>
+        <span>Qualidade Garantida</span>
+      </div>
+      <div class="divider"></div>
+      <div class="highlight">
+        <i class="fas fa-percentage"></i>
+        <span>Sempre em Promoção</span>
+      </div>
+      <div class="divider"></div>
+      <div class="highlight">
+        <i class="fab fa-whatsapp"></i>
+        <span>Atendimento pelo Zap</span>
+      </div>
+    </div>
+  </div>
+</section>

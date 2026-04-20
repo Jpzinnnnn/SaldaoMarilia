@@ -1,0 +1,48 @@
+<section class="reviews">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Avaliações</span>
+      <h2 class="section-title text-white">
+        O QUE NOSSOS <span class="text-yellow">CLIENTES</span> DIZEM
+      </h2>
+      <div class="rating-summary">
+        <div class="big-rating">
+          <span class="rating-num">5.0</span>
+          <div class="rating-stars">
+            <i class="fas fa-star" *ngFor="let s of [1,2,3,4,5]"></i>
+          </div>
+          <span class="rating-count">+500 avaliações</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+      <div
+        class="review-card reveal"
+        *ngFor="let review of reviews; let i = index"
+        [style.animation-delay]="(i * 0.1) + 's'"
+      >
+        <div class="review-header">
+          <div class="avatar" [style.background]="getAvatarColor(review.avatar)">
+            {{ review.avatar }}
+          </div>
+          <div class="reviewer-info">
+            <span class="reviewer-name">{{ review.name }}</span>
+            <span class="review-product">{{ review.product }}</span>
+          </div>
+          <span class="review-date">{{ review.date }}</span>
+        </div>
+
+        <div class="review-stars">
+          <i class="fas fa-star" *ngFor="let s of getStars(review.rating)"></i>
+        </div>
+
+        <p class="review-text">"{{ review.text }}"</p>
+
+        <div class="verified-badge">
+          <i class="fas fa-check-circle"></i> Compra Verificada
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

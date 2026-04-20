@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saldão Marília — Moda para Todos os Estilos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* =============================================
+   DESIGN SYSTEM — Saldão Marília
+   ============================================= */
+:root {
+  --black:       #0a0a0a;
+  --yellow:      #FFD600;
+  --yellow-dark: #F5C800;
+  --yellow-light:#FFF176;
+  --white:       #FFFFFF;
+  --g100:        #F8F8F8;
+  --g200:        #EEEEEE;
+  --g300:        #CCCCCC;
+  --g500:        #888888;
+  --g700:        #444444;
+  --red:         #FF1744;
+  --green-wpp:   #25D366;
+  --fd:          'Bebas Neue', sans-serif;
+  --fc:          'Barlow Condensed', sans-serif;
+  --fb:          'Barlow', sans-serif;
+  --sh-sm:  0 2px 8px rgba(0,0,0,.08);
+  --sh-md:  0 4px 20px rgba(0,0,0,.14);
+  --sh-lg:  0 8px 40px rgba(0,0,0,.2);
+  --sh-xl:  0 16px 60px rgba(0,0,0,.3);
+  --r-sm: 6px; --r-md: 12px; --r-lg: 20px;
+  --tr: all .3s cubic-bezier(.4,0,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--black);color:var(--white);line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{text-decoration:none}
+h1,h2,h3,h4{font-family:var(--fd);letter-spacing:.02em;line-height:1.1}
+.container{max-width:1200px;margin:0 auto;padding:0 1.5rem}
+.section-label{display:inline-block;font-family:var(--fc);font-weight:700;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--black);background:var(--yellow);padding:.3rem .9rem;border-radius:2px;margin-bottom:1rem}
+.btn-primary{display:inline-flex;align-items:center;gap:.5rem;background:var(--yellow);color:var(--black);font-family:var(--fc);font-weight:800;font-size:1rem;letter-spacing:.08em;text-transform:uppercase;padding:.85rem 2rem;border:none;border-radius:var(--r-sm);cursor:pointer;text-decoration:none;transition:var(--tr)}
+.btn-primary:hover{background:var(--yellow-dark);transform:translateY(-2px);box-shadow:0 8px 25px rgba(255,214,0,.4)}
+.btn-outline{display:inline-flex;align-items:center;gap:.5rem;background:transparent;color:var(--yellow);font-family:var(--fc);font-weight:800;font-size:1rem;letter-spacing:.08em;text-transform:uppercase;padding:.85rem 2rem;border:2px solid var(--yellow);border-radius:var(--r-sm);cursor:pointer;text-decoration:none;transition:var(--tr)}
+.btn-outline:hover{background:var(--yellow);color:var(--black);transform:translateY(-2px)}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--black)}
+::-webkit-scrollbar-thumb{background:var(--yellow);border-radius:3px}
+
+/* Animations */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeInLeft{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:translateX(0)}}
+@keyframes fadeInRight{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes wppPulse{0%{opacity:.7;transform:scale(1)}100%{opacity:0;transform:scale(1.7)}}
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-l{opacity:0;transform:translateX(-40px);transition:opacity .7s ease,transform .7s ease}
+.reveal-l.visible{opacity:1;transform:translateX(0)}
+.reveal-r{opacity:0;transform:translateX(40px);transition:opacity .7s ease,transform .7s ease}
+.reveal-r.visible{opacity:1;transform:translateX(0)}
+
+/* =============================================
+   HEADER
+   ============================================= */
+.header{position:fixed;top:0;left:0;right:0;z-index:1000;transition:all .3s ease}
+.header-top{background:var(--yellow);color:var(--black);font-family:var(--fc);font-size:.8rem;font-weight:600;letter-spacing:.05em;padding:.4rem 0}
+.header-top .container{display:flex;justify-content:center;align-items:center;gap:2rem;flex-wrap:wrap}
+.header-top span{display:flex;align-items:center;gap:.4rem}
+.navbar{background:var(--black);padding:1rem 0;transition:all .3s ease}
+.navbar .container{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.logo{cursor:pointer;display:flex;flex-direction:column;line-height:1;user-select:none}
+.logo-saldao{font-family:var(--fd);font-size:2.2rem;color:var(--yellow);letter-spacing:.04em;line-height:.9}
+.logo-marilia{font-family:var(--fc);font-size:1.1rem;font-weight:900;color:var(--white);letter-spacing:.25em;text-transform:uppercase}
+.logo-tag{font-family:var(--fc);font-size:.55rem;font-weight:700;letter-spacing:.2em;color:var(--black);background:var(--yellow);padding:.1rem .4rem;margin-top:.2rem;display:inline-block}
+.nav-links{display:flex;list-style:none;gap:.25rem;align-items:center}
+.nav-link{font-family:var(--fc);font-weight:700;font-size:.95rem;letter-spacing:.08em;text-transform:uppercase;color:var(--g300);cursor:pointer;padding:.5rem .9rem;border-radius:var(--r-sm);transition:var(--tr);position:relative}
+.nav-link::after{content:'';position:absolute;bottom:2px;left:.9rem;right:.9rem;height:2px;background:var(--yellow);transform:scaleX(0);transition:transform .3s ease}
+.nav-link:hover{color:var(--yellow)}
+.nav-link:hover::after{transform:scaleX(1)}
+.header-actions{display:flex;align-items:center;gap:1rem}
+.hamburger{display:none;flex-direction:column;justify-content:space-between;width:28px;height:20px;background:none;border:none;cursor:pointer;padding:0}
+.hamburger span{display:block;height:2px;background:var(--yellow);border-radius:2px;transition:all .3s ease;transform-origin:center}
+.hamburger.active span:nth-child(1){transform:translateY(9px) rotate(45deg)}
+.hamburger.active span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.active span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
+.mobile-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:998;opacity:0;transition:opacity .3s}
+.mobile-overlay.active{display:block;opacity:1}
+.mobile-menu{display:none;position:fixed;top:0;right:-100%;width:80%;max-width:300px;height:100vh;background:var(--black);border-left:3px solid var(--yellow);z-index:999;padding:5rem 2rem 2rem;flex-direction:column;gap:2rem;transition:right .4s cubic-bezier(.4,0,.2,1)}
+.mobile-menu.active{right:0}
+.mobile-menu ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.mobile-menu ul li a{display:flex;align-items:center;gap:.8rem;font-family:var(--fc);font-weight:700;font-size:1.2rem;letter-spacing:.08em;text-transform:uppercase;color:var(--white);cursor:pointer;padding:.8rem 1rem;border-radius:var(--r-sm);transition:var(--tr)}
+.mobile-menu ul li a i{color:var(--yellow);width:20px}
+.mobile-menu ul li a:hover{background:rgba(255,214,0,.1);color:var(--yellow);padding-left:1.5rem}
+.header.scrolled .navbar{background:rgba(10,10,10,.97);backdrop-filter:blur(20px);box-shadow:0 4px 30px rgba(255,214,0,.15);padding:.6rem 0}
+.header.scrolled .header-top{display:none}
+
+/* =============================================
+   HERO
+   ============================================= */
+.hero{min-height:100vh;position:relative;display:flex;flex-direction:column;padding-top:80px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,214,0,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,214,0,.04) 1px,transparent 1px);background-size:60px 60px}
+.bg-glow{position:absolute;top:-20%;right:-10%;width:70%;height:80%;background:radial-gradient(ellipse,rgba(255,214,0,.12) 0%,transparent 70%);pointer-events:none}
+.floating-tags{position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:1}
+.tag{position:absolute;font-family:var(--fc);font-weight:700;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;padding:.4rem .9rem;border-radius:100px;display:flex;align-items:center;gap:.4rem;animation:float 4s ease-in-out infinite}
+.tag-1{top:18%;right:8%;background:rgba(255,23,68,.2);border:1px solid rgba(255,23,68,.4);color:#FF6B8A;animation-delay:0s}
+.tag-2{top:35%;right:4%;background:rgba(255,214,0,.15);border:1px solid rgba(255,214,0,.3);color:var(--yellow);animation-delay:1s}
+.tag-3{bottom:35%;right:10%;background:rgba(0,200,100,.15);border:1px solid rgba(0,200,100,.3);color:#4CAF82;animation-delay:2s}
+.tag-4{bottom:25%;right:3%;background:rgba(100,150,255,.15);border:1px solid rgba(100,150,255,.3);color:#90B4FF;animation-delay:.5s}
+.hero-content{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;padding-top:4rem;padding-bottom:2rem;position:relative;z-index:2}
+.hero-text{animation:fadeInLeft .8s ease forwards}
+.hero-eyebrow{margin-bottom:1.5rem}
+.eyebrow-badge{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--fc);font-weight:700;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--black);background:var(--yellow);padding:.4rem 1rem;border-radius:2px}
+.hero-title{display:flex;flex-direction:column;margin-bottom:1.5rem}
+.title-line-1{font-family:var(--fc);font-weight:900;font-size:clamp(2.5rem,6vw,5rem);color:var(--g300);letter-spacing:.05em;line-height:1;text-transform:uppercase}
+.title-line-2{font-family:var(--fd);font-size:clamp(4rem,10vw,8.5rem);color:var(--yellow);line-height:.85;text-transform:uppercase;text-shadow:4px 4px 0 rgba(255,214,0,.2)}
+.title-line-3{font-family:var(--fd);font-size:clamp(4rem,10vw,8.5rem);color:var(--white);line-height:.85;text-transform:uppercase;-webkit-text-stroke:2px rgba(255,255,255,.3);text-shadow:4px 4px 0 rgba(0,0,0,.5)}
+.hero-subtitle{font-size:1.1rem;color:var(--g300);line-height:1.7;margin-bottom:2rem;max-width:480px}
+.hero-subtitle strong{color:var(--yellow);font-weight:700}
+.hero-prices{display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:2.5rem}
+.price-chip{display:flex;flex-direction:column;align-items:flex-start;background:rgba(255,214,0,.08);border:1px solid rgba(255,214,0,.25);padding:.5rem 1rem;border-radius:var(--r-sm)}
+.price-chip .from{font-family:var(--fc);font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--g500)}
+.price-chip .price{font-family:var(--fd);font-size:1.4rem;color:var(--yellow);line-height:1}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-hero{font-size:1.05rem;padding:.95rem 2.2rem}
+.visual-frame{position:relative;border-radius:var(--r-lg);overflow:hidden;border:2px solid rgba(255,214,0,.2);box-shadow:0 20px 60px rgba(0,0,0,.5),0 0 40px rgba(255,214,0,.1)}
+.visual-frame .hero-img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;filter:saturate(.9) contrast(1.05)}
+.img-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(10,10,10,.7) 100%)}
+.img-badge{position:absolute;top:1.5rem;left:1.5rem;background:var(--red);width:80px;height:80px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(255,23,68,.5);animation:pulse 2s ease-in-out infinite}
+.badge-percent{font-family:var(--fd);font-size:1.8rem;color:var(--white);line-height:1}
+.badge-off{font-family:var(--fc);font-size:.75rem;font-weight:900;color:var(--white);letter-spacing:.1em}
+.hero-visual{position:relative;animation:fadeInUp .8s ease .2s both}
+.deco-circle{position:absolute;border-radius:50%;border:2px solid rgba(255,214,0,.15)}
+.deco-1{width:120px;height:120px;bottom:-30px;right:-30px;background:rgba(255,214,0,.05)}
+.deco-2{width:60px;height:60px;top:-20px;left:-20px;border-color:rgba(255,214,0,.3)}
+.deco-line{position:absolute;width:2px;height:80px;background:linear-gradient(to bottom,var(--yellow),transparent);top:20%;right:-15px}
+.stats-bar{position:relative;z-index:2;background:var(--yellow);padding:1.5rem 0;margin-top:auto}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.stat{display:flex;flex-direction:column;align-items:center;text-align:center;padding:.5rem;border-right:1px solid rgba(0,0,0,.15)}
+.stat:last-child{border-right:none}
+.stat-value{font-family:var(--fd);font-size:2rem;color:var(--black);line-height:1}
+.stat-label{font-family:var(--fc);font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(0,0,0,.6);margin-top:.2rem}
+.scroll-indicator{position:absolute;bottom:6rem;left:50%;transform:translateX(-50%);z-index:2;color:var(--yellow);font-size:1.2rem;cursor:pointer;animation:float 2s ease-in-out infinite;opacity:.7}
+.scroll-indicator:hover{opacity:1}
+
+/* =============================================
+   PRODUCTS
+   ============================================= */
+.products{padding:6rem 0;background:var(--g100);color:var(--black)}
+.section-header{text-align:center;margin-bottom:3rem}
+.section-header .section-title{color:var(--black);margin-bottom:1rem}
+.section-title{font-family:var(--fd);font-size:clamp(2.5rem,5vw,4rem);letter-spacing:.05em;text-transform:uppercase}
+.text-yellow{color:var(--yellow-dark)}
+.section-desc{font-size:1.1rem;color:var(--g700);max-width:500px;margin:0 auto}
+.category-filter{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-bottom:3rem}
+.filter-btn{font-family:var(--fc);font-weight:700;font-size:.9rem;letter-spacing:.08em;text-transform:uppercase;padding:.6rem 1.4rem;border-radius:100px;border:2px solid var(--g300);background:transparent;color:var(--g700);cursor:pointer;transition:var(--tr)}
+.filter-btn:hover{border-color:var(--black);color:var(--black)}
+.filter-btn.active{background:var(--black);border-color:var(--black);color:var(--yellow)}
+.products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.product-card{background:var(--white);border-radius:var(--r-md);overflow:hidden;box-shadow:var(--sh-sm);transition:var(--tr);position:relative}
+.product-card:hover{transform:translateY(-6px);box-shadow:var(--sh-xl)}
+.product-card:hover .card-overlay{opacity:1}
+.product-card:hover .card-image img{transform:scale(1.07)}
+.card-badge{position:absolute;top:.9rem;left:.9rem;z-index:2;color:var(--white);font-family:var(--fc);font-weight:800;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .7rem;border-radius:3px}
+.card-image{position:relative;overflow:hidden;aspect-ratio:1/1}
+.card-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.card-overlay{position:absolute;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:flex-end;justify-content:center;padding-bottom:1.2rem;opacity:0;transition:opacity .3s ease}
+.overlay-btn{background:#25D366;color:white;font-family:var(--fc);font-weight:700;font-size:.85rem;letter-spacing:.05em;padding:.6rem 1.2rem;border:none;border-radius:100px;cursor:pointer;display:flex;align-items:center;gap:.4rem;transition:var(--tr)}
+.overlay-btn:hover{background:#1ab855;transform:scale(1.05)}
+.card-body{padding:1.2rem}
+.card-category{font-family:var(--fc);font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--g500)}
+.card-name{font-family:var(--fc);font-weight:700;font-size:1.05rem;color:var(--black);margin:.3rem 0 .8rem;line-height:1.3}
+.card-pricing{margin-bottom:1rem}
+.card-old-price{font-size:.82rem;color:var(--g500);text-decoration:line-through;display:block;margin-bottom:.15rem}
+.card-price-row{display:flex;align-items:center;gap:.6rem}
+.card-price{font-family:var(--fd);font-size:1.6rem;color:var(--black);line-height:1}
+.discount-badge{background:var(--red);color:white;font-family:var(--fc);font-weight:800;font-size:.72rem;padding:.2rem .5rem;border-radius:3px}
+.btn-buy{width:100%;background:var(--black);color:var(--yellow);font-family:var(--fc);font-weight:800;font-size:.92rem;letter-spacing:.08em;text-transform:uppercase;padding:.75rem;border:2px solid var(--black);border-radius:var(--r-sm);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem;transition:var(--tr)}
+.btn-buy:hover{background:var(--yellow);color:var(--black);border-color:var(--yellow)}
+.products-cta{text-align:center;margin-top:3.5rem;padding-top:3rem;border-top:2px dashed var(--g300)}
+.products-cta p{font-size:1.1rem;color:var(--g700);margin-bottom:1.2rem;font-family:var(--fc);font-weight:600;letter-spacing:.03em}
+
+/* =============================================
+   PROMOTIONS
+   ============================================= */
+.promotions{padding:6rem 0;background:var(--black);position:relative;overflow:hidden}
+.promotions::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--yellow),transparent)}
+.promotions .section-header{text-align:center;margin-bottom:3rem}
+.promotions .section-title{color:var(--white)}
+.countdown-banner{background:linear-gradient(135deg,#1a1a1a 0%,#2a2200 100%);border:2px solid var(--yellow);border-radius:var(--r-md);padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.countdown-left{display:flex;align-items:center;gap:1rem}
+.pulse-icon{font-size:2rem;color:var(--yellow);animation:pulse 1.5s ease-in-out infinite}
+.countdown-title{display:block;font-family:var(--fd);font-size:1.4rem;color:var(--yellow);line-height:1}
+.countdown-sub{display:block;font-family:var(--fc);font-size:.85rem;font-weight:600;color:var(--g300);letter-spacing:.05em;margin-top:.2rem}
+.countdown-timer{display:flex;align-items:center;gap:.5rem}
+.time-block{display:flex;flex-direction:column;align-items:center;background:rgba(255,214,0,.1);border:1px solid rgba(255,214,0,.3);border-radius:var(--r-sm);padding:.5rem 1rem;min-width:64px}
+.time-num{font-family:var(--fd);font-size:2.2rem;color:var(--yellow);line-height:1}
+.time-label{font-family:var(--fc);font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--g500)}
+.time-sep{font-family:var(--fd);font-size:2rem;color:var(--yellow);opacity:.6}
+.banners-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-bottom:2.5rem}
+.promo-banner{border-radius:var(--r-md);padding:2rem;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:.8rem;transition:var(--tr)}
+.promo-banner:hover{transform:translateY(-4px);box-shadow:var(--sh-xl)}
+.promo-red{background:linear-gradient(135deg,#3a0010 0%,#1a0005 100%);border:1px solid rgba(255,23,68,.3)}
+.promo-yellow{background:linear-gradient(135deg,#3a2e00 0%,#1a1500 100%);border:1px solid rgba(255,214,0,.3)}
+.promo-dark{background:linear-gradient(135deg,#1e1e1e 0%,#111 100%);border:1px solid rgba(255,255,255,.1)}
+.promo-orange{background:linear-gradient(135deg,#3a1a00 0%,#1a0d00 100%);border:1px solid rgba(255,111,0,.3)}
+.banner-icon{font-size:2.5rem;line-height:1}
+.banner-title{font-family:var(--fd);font-size:1.8rem;color:var(--white);line-height:1}
+.banner-subtitle{font-family:var(--fc);font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--g500)}
+.banner-desc{font-size:.92rem;color:var(--g300);line-height:1.6}
+.banner-cta{display:inline-flex;align-items:center;gap:.5rem;background:transparent;color:var(--yellow);font-family:var(--fc);font-weight:800;font-size:.9rem;letter-spacing:.08em;text-transform:uppercase;border:none;cursor:pointer;padding:0;margin-top:.5rem;transition:var(--tr)}
+.banner-cta:hover{gap:.9rem;color:var(--yellow-light)}
+.banner-deco{position:absolute;right:-20px;bottom:-20px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.03);border:2px solid rgba(255,255,255,.06);pointer-events:none}
+.highlights-strip{background:var(--yellow);border-radius:var(--r-md);padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-around;flex-wrap:wrap;gap:1rem}
+.highlight{display:flex;align-items:center;gap:.7rem;font-family:var(--fc);font-weight:800;font-size:1rem;letter-spacing:.05em;text-transform:uppercase;color:var(--black)}
+.highlight i{font-size:1.3rem}
+.divider-v{width:1px;height:28px;background:rgba(0,0,0,.2)}
+
+/* =============================================
+   REVIEWS
+   ============================================= */
+.reviews{padding:6rem 0;background:#111;position:relative}
+.reviews::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--yellow),transparent)}
+.reviews .section-title{color:var(--white)}
+.rating-summary{margin-top:1.5rem;display:flex;justify-content:center}
+.big-rating{display:flex;flex-direction:column;align-items:center;gap:.4rem}
+.rating-num{font-family:var(--fd);font-size:3.5rem;color:var(--yellow);line-height:1}
+.rating-stars{display:flex;gap:.3rem}
+.rating-stars i{color:var(--yellow);font-size:1.3rem}
+.rating-count{font-family:var(--fc);font-size:.85rem;font-weight:600;letter-spacing:.08em;color:var(--g500);text-transform:uppercase}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.review-card{background:#1a1a1a;border:1px solid rgba(255,255,255,.06);border-radius:var(--r-md);padding:1.8rem;display:flex;flex-direction:column;gap:1rem;transition:var(--tr)}
+.review-card:hover{transform:translateY(-4px);border-color:rgba(255,214,0,.2);box-shadow:0 10px 40px rgba(0,0,0,.4)}
+.review-header{display:flex;align-items:center;gap:.9rem}
+.avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--fc);font-weight:800;font-size:.9rem;color:white;flex-shrink:0}
+.reviewer-info{flex:1}
+.reviewer-name{display:block;font-family:var(--fc);font-weight:700;font-size:1rem;color:var(--white)}
+.review-product{display:block;font-size:.78rem;color:var(--g500);font-family:var(--fc);letter-spacing:.05em}
+.review-date{font-size:.75rem;color:var(--g500);font-family:var(--fc);letter-spacing:.05em;white-space:nowrap}
+.review-stars{display:flex;gap:.2rem}
+.review-stars i{color:var(--yellow);font-size:.9rem}
+.review-text{font-size:.92rem;color:var(--g300);line-height:1.7;font-style:italic;flex:1}
+.verified-badge{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--fc);font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#4CAF82}
+
+/* =============================================
+   ABOUT
+   ============================================= */
+.about{padding:6rem 0;background:var(--g100);color:var(--black)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.visual-stack{position:relative;height:500px}
+.about-img{position:absolute;object-fit:cover;border-radius:var(--r-md);box-shadow:var(--sh-xl)}
+.main-img{top:0;left:0;width:80%;height:80%}
+.secondary-img{bottom:0;right:0;width:55%;height:55%;border:4px solid var(--white);z-index:1}
+.years-badge{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;background:var(--yellow);width:100px;height:100px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:var(--sh-lg);border:4px solid white}
+.years-num{font-family:var(--fd);font-size:2.2rem;color:var(--black);line-height:1}
+.years-text{font-family:var(--fc);font-size:.6rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--black);text-align:center;line-height:1.2}
+.about-text{display:flex;flex-direction:column;gap:1.2rem}
+.about-title{color:var(--black)}
+.about-title .text-yellow{color:#B8960C}
+.about-desc{font-size:1rem;color:var(--g700);line-height:1.8}
+.about-desc strong{color:var(--black);font-weight:700}
+.features-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:.5rem 0}
+.feature{display:flex;align-items:flex-start;gap:.8rem;padding:1rem;background:white;border-radius:var(--r-sm);border:1px solid var(--g200);transition:var(--tr)}
+.feature:hover{border-color:var(--yellow-dark);box-shadow:var(--sh-sm);transform:translateY(-2px)}
+.feature-icon{width:40px;height:40px;background:var(--black);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.feature-icon i{color:var(--yellow);font-size:1rem}
+.feature-text h4{font-family:var(--fc);font-weight:800;font-size:.95rem;color:var(--black);margin-bottom:.2rem}
+.feature-text p{font-size:.82rem;color:var(--g500);line-height:1.4}
+
+/* =============================================
+   LOCATION
+   ============================================= */
+.location{padding:6rem 0;background:var(--black)}
+.location::before{content:'';display:block;height:3px;background:linear-gradient(90deg,transparent,var(--yellow),transparent)}
+.location-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:4rem;align-items:center}
+.location-info{display:flex;flex-direction:column;gap:1.5rem}
+.loc-title{color:var(--white)}
+.loc-title .text-yellow{color:var(--yellow)}
+.info-cards{display:flex;flex-direction:column;gap:1rem}
+.info-card{display:flex;align-items:flex-start;gap:1rem;padding:1.2rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:var(--r-sm);transition:var(--tr)}
+.info-card:hover{border-color:rgba(255,214,0,.3);background:rgba(255,214,0,.05)}
+.info-icon{width:44px;height:44px;background:var(--yellow);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.info-icon i{color:var(--black);font-size:1.1rem}
+.info-card > div{display:flex;flex-direction:column;gap:.15rem}
+.info-label{font-family:var(--fc);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--g500)}
+.info-value{font-family:var(--fc);font-weight:700;font-size:1rem;color:var(--white)}
+.info-sub{font-size:.85rem;color:var(--g500)}
+.location-map{position:relative}
+.map-wrapper{position:relative;height:420px;border-radius:var(--r-md);overflow:hidden;border:2px solid rgba(255,214,0,.2);box-shadow:var(--sh-xl)}
+.map-wrapper iframe{width:100%;height:100%;filter:grayscale(.3) invert(.9) hue-rotate(180deg)}
+.map-overlay-label{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--yellow);color:var(--black);font-family:var(--fc);font-weight:800;font-size:.9rem;letter-spacing:.08em;text-transform:uppercase;padding:.5rem 1.2rem;border-radius:100px;display:flex;align-items:center;gap:.5rem;box-shadow:var(--sh-md);white-space:nowrap}
+
+/* =============================================
+   CONTACT
+   ============================================= */
+.contact{padding:6rem 0;background:#111}
+.contact .section-header{text-align:center;margin-bottom:3.5rem;color:var(--white)}
+.contact .section-title{color:var(--white)}
+.contact .section-desc{font-size:1.05rem;color:var(--g500);margin-top:.5rem;font-family:var(--fc);font-weight:600;letter-spacing:.04em}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
+.channels-list{display:flex;flex-direction:column;gap:1rem}
+.channel-card{display:flex;align-items:center;gap:1.2rem;padding:1.4rem;background:#1a1a1a;border:1px solid rgba(255,255,255,.07);border-radius:var(--r-md);text-decoration:none;transition:var(--tr)}
+.channel-card:hover{transform:translateX(6px);border-color:rgba(255,214,0,.2);background:rgba(255,214,0,.04)}
+.channel-card:hover .ch-arrow{opacity:1;transform:translateX(0)}
+.ch-icon{width:54px;height:54px;border-radius:var(--r-sm);border:1px solid;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ch-icon i{font-size:1.5rem}
+.ch-info{flex:1;display:flex;flex-direction:column;gap:.1rem}
+.ch-label{font-family:var(--fc);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--g500)}
+.ch-value{font-family:var(--fc);font-weight:700;font-size:1.05rem;color:var(--white)}
+.ch-desc{font-size:.82rem;color:var(--g500)}
+.ch-arrow{color:var(--g500);font-size:.85rem;opacity:0;transform:translateX(-5px);transition:var(--tr)}
+.whatsapp-cta .cta-inner{background:linear-gradient(135deg,#0a2a0a 0%,#0d1a0d 100%);border:2px solid rgba(37,211,102,.3);border-radius:var(--r-lg);padding:2.5rem;display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.2rem}
+.cta-icon-wrap{width:80px;height:80px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 0 40px rgba(37,211,102,.4);animation:pulse 2s ease-in-out infinite}
+.cta-icon-wrap i{font-size:2.5rem;color:white}
+.cta-title{font-family:var(--fd);font-size:1.8rem;color:var(--white);line-height:1.1}
+.cta-desc{font-size:.95rem;color:var(--g300);line-height:1.7;max-width:340px}
+.cta-hours{display:flex;align-items:center;gap:.5rem;font-family:var(--fc);font-size:.85rem;font-weight:700;letter-spacing:.05em;color:var(--g500);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);padding:.5rem 1rem;border-radius:100px}
+.cta-hours i{color:var(--yellow)}
+.btn-whatsapp{display:flex;align-items:center;gap:.6rem;background:#25D366;color:white;font-family:var(--fc);font-weight:800;font-size:1.05rem;letter-spacing:.06em;text-transform:uppercase;padding:1rem 2rem;border:none;border-radius:100px;cursor:pointer;transition:var(--tr);box-shadow:0 8px 30px rgba(37,211,102,.3);width:100%;justify-content:center}
+.btn-whatsapp i{font-size:1.3rem}
+.btn-whatsapp:hover{background:#1ab855;transform:translateY(-2px);box-shadow:0 12px 40px rgba(37,211,102,.5)}
+.cta-tip{font-family:var(--fc);font-size:.8rem;font-weight:600;letter-spacing:.08em;color:#25D366;opacity:.8}
+
+/* =============================================
+   FOOTER
+   ============================================= */
+.footer{background:#050505;border-top:3px solid var(--yellow)}
+.footer-top{padding:4rem 0}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem}
+.footer-brand{display:flex;flex-direction:column;gap:1.2rem}
+.footer-logo{display:flex;flex-direction:column;line-height:1}
+.footer-logo .logo-saldao{font-family:var(--fd);font-size:2.5rem;color:var(--yellow);letter-spacing:.04em;line-height:.9}
+.footer-logo .logo-marilia{font-family:var(--fc);font-size:1.1rem;font-weight:900;color:var(--white);letter-spacing:.25em;text-transform:uppercase}
+.brand-desc{font-size:.9rem;color:var(--g500);line-height:1.7;max-width:280px}
+.social-links{display:flex;gap:.8rem}
+.social-link{width:42px;height:42px;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:white;text-decoration:none;transition:var(--tr)}
+.social-link.wpp{background:rgba(37,211,102,.15);border:1px solid rgba(37,211,102,.3);color:#25D366}
+.social-link.wpp:hover{background:#25D366;color:white;transform:translateY(-3px)}
+.social-link.ig{background:rgba(225,48,108,.15);border:1px solid rgba(225,48,108,.3);color:#E1306C}
+.social-link.ig:hover{background:#E1306C;color:white;transform:translateY(-3px)}
+.social-link.fb{background:rgba(24,119,242,.15);border:1px solid rgba(24,119,242,.3);color:#1877F2}
+.social-link.fb:hover{background:#1877F2;color:white;transform:translateY(-3px)}
+.footer-section{display:flex;flex-direction:column;gap:1.2rem}
+.footer-heading{font-family:var(--fc);font-weight:800;font-size:.9rem;letter-spacing:.15em;text-transform:uppercase;color:var(--yellow);padding-bottom:.8rem;border-bottom:1px solid rgba(255,255,255,.07)}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.footer-links a{display:flex;align-items:center;gap:.5rem;font-family:var(--fc);font-weight:600;font-size:.92rem;color:var(--g500);cursor:pointer;transition:var(--tr);letter-spacing:.03em}
+.footer-links a i{font-size:.6rem;color:var(--yellow)}
+.footer-links a:hover{color:var(--white);padding-left:5px}
+.footer-info-list{list-style:none;display:flex;flex-direction:column;gap:1rem}
+.footer-info-list li{display:flex;align-items:flex-start;gap:.7rem;font-size:.88rem;color:var(--g500);line-height:1.5}
+.footer-info-list li i{color:var(--yellow);font-size:.95rem;margin-top:2px;flex-shrink:0}
+.footer-hours-list{list-style:none;display:flex;flex-direction:column;gap:.8rem}
+.footer-hours-list li{display:flex;flex-direction:column;gap:.15rem}
+.day-range{font-family:var(--fc);font-weight:700;font-size:.9rem;color:var(--white);letter-spacing:.03em}
+.hours{font-size:.85rem;color:var(--g500)}
+.hours.closed{color:var(--red);opacity:.7}
+.open-now{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--fc);font-weight:700;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:#4CAF82;background:rgba(76,175,130,.1);border:1px solid rgba(76,175,130,.25);padding:.35rem .8rem;border-radius:100px}
+.open-dot{width:7px;height:7px;border-radius:50%;background:#4CAF82;animation:pulse 2s ease-in-out infinite}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.06);padding:1.5rem 0}
+.footer-bottom .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
+.footer-bottom span{font-family:var(--fc);font-size:.82rem;letter-spacing:.04em;color:var(--g500)}
+.footer-bottom i{color:var(--red);margin:0 .2rem}
+
+/* =============================================
+   WHATSAPP FLOAT
+   ============================================= */
+.whatsapp-float{position:fixed;bottom:2rem;right:2rem;z-index:9999;display:flex;align-items:center;gap:.8rem;opacity:0;transform:translateY(20px) scale(.8);pointer-events:none;transition:all .4s cubic-bezier(.34,1.56,.64,1)}
+.whatsapp-float.visible{opacity:1;transform:translateY(0) scale(1);pointer-events:all}
+.wpp-tooltip{background:var(--white);color:var(--black);font-family:var(--fc);font-weight:700;font-size:.88rem;padding:.55rem 1rem;border-radius:100px;box-shadow:var(--sh-md);white-space:nowrap;opacity:0;transform:translateX(10px);transition:all .3s ease;pointer-events:none}
+.wpp-tooltip.show{opacity:1;transform:translateX(0)}
+.float-btn{position:relative;width:60px;height:60px;border-radius:50%;background:#25D366;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 25px rgba(37,211,102,.5);transition:var(--tr)}
+.float-btn i{font-size:1.8rem;color:white;position:relative;z-index:1}
+.float-btn:hover{background:#1ab855;transform:scale(1.1);box-shadow:0 10px 35px rgba(37,211,102,.6)}
+.pulse-ring{position:absolute;inset:-6px;border-radius:50%;border:3px solid #25D366;opacity:0;animation:wppPulse 2.5s ease-out infinite}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media(max-width:1100px){.products-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:1000px){.reviews-grid{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:900px){
+  .hero-content{grid-template-columns:1fr;gap:3rem;text-align:center;padding-top:3rem}
+  .hero-text{animation:fadeInUp .8s ease forwards}
+  .hero-title,.hero-prices,.hero-actions{justify-content:center;align-items:center}
+  .hero-subtitle{margin:0 auto 2rem}
+  .hero-visual{max-width:400px;margin:0 auto}
+  .about-grid{grid-template-columns:1fr;gap:3rem}
+  .location-grid{grid-template-columns:1fr;gap:3rem}
+  .contact-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .mobile-menu{display:flex}
+  .btn-ofertas{display:none}
+  .header-top{display:none}
+}
+@media(max-width:768px){
+  .products-grid{grid-template-columns:repeat(2,1fr);gap:1rem}
+  .banners-grid{grid-template-columns:1fr}
+  .floating-tags .tag{display:none}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .countdown-banner{flex-direction:column;text-align:center}
+}
+@media(max-width:600px){
+  .reviews-grid{grid-template-columns:1fr}
+  .features-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .visual-stack{height:300px}
+}
+@media(max-width:480px){.products-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header class="header" id="mainHeader">
+  <div class="header-top">
+    <div class="container">
+      <span><i class="fas fa-map-marker-alt"></i> Av. Sampaio Vidal, 734 - Centro, Marília/SP</span>
+      <span><i class="fab fa-whatsapp"></i> (14) 99167-7085</span>
+      <span><i class="fas fa-clock"></i> Seg a Sáb: 09h às 19h</span>
+    </div>
+  </div>
+  <nav class="navbar">
+    <div class="container">
+      <div class="logo" onclick="scrollToSection('inicio')">
+        <span class="logo-saldao">SALDÃO</span>
+        <span class="logo-marilia">MARÍLIA</span>
+        <div class="logo-tag">MODA &amp; PREÇO</div>
+      </div>
+      <ul class="nav-links">
+        <li><a class="nav-link" onclick="scrollToSection('inicio')">Início</a></li>
+        <li><a class="nav-link" onclick="scrollToSection('produtos')">Produtos</a></li>
+        <li><a class="nav-link" onclick="scrollToSection('promocoes')">Promoções</a></li>
+        <li><a class="nav-link" onclick="scrollToSection('sobre')">Sobre Nós</a></li>
+        <li><a class="nav-link" onclick="scrollToSection('contato')">Contato</a></li>
+      </ul>
+      <div class="header-actions">
+        <button class="btn-primary btn-ofertas" onclick="scrollToSection('promocoes')">
+          <i class="fas fa-bolt"></i> Ver Ofertas
+        </button>
+        <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-overlay" id="mobileOverlay" onclick="closeMenu()"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a onclick="scrollToSection('inicio');closeMenu()"><i class="fas fa-home"></i> Início</a></li>
+      <li><a onclick="scrollToSection('produtos');closeMenu()"><i class="fas fa-tshirt"></i> Produtos</a></li>
+      <li><a onclick="scrollToSection('promocoes');closeMenu()"><i class="fas fa-tag"></i> Promoções</a></li>
+      <li><a onclick="scrollToSection('sobre');closeMenu()"><i class="fas fa-store"></i> Sobre Nós</a></li>
+      <li><a onclick="scrollToSection('contato');closeMenu()"><i class="fas fa-envelope"></i> Contato</a></li>
+    </ul>
+    <button class="btn-primary" style="margin-top:1rem;justify-content:center;width:100%" onclick="scrollToSection('promocoes');closeMenu()">
+      <i class="fas fa-bolt"></i> Ver Todas as Ofertas
+    </button>
+  </div>
+</header>
+
+<main>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="inicio">
+  <div class="hero-bg">
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
+  </div>
+  <div class="floating-tags">
+    <span class="tag tag-1"><i class="fas fa-fire"></i> Queima Estoque</span>
+    <span class="tag tag-2"><i class="fas fa-percent"></i> Até 70% OFF</span>
+    <span class="tag tag-3"><i class="fas fa-star"></i> Mais Vendidos</span>
+    <span class="tag tag-4"><i class="fas fa-truck"></i> Retirada na Loja</span>
+  </div>
+  <div class="container hero-content">
+    <div class="hero-text">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-badge"><i class="fas fa-bolt"></i> PROMOÇÕES TODOS OS DIAS</span>
+      </div>
+      <h1 class="hero-title">
+        <span class="title-line-1">MODA PARA</span>
+        <span class="title-line-2">TODOS OS</span>
+        <span class="title-line-3">ESTILOS</span>
+      </h1>
+      <p class="hero-subtitle">
+        Camisetas, calças jeans, tênis, conjuntos e muito mais com <strong>preços imperdíveis</strong> em Marília/SP.
+      </p>
+      <div class="hero-prices">
+        <div class="price-chip"><span class="from">a partir de</span><span class="price">R$&nbsp;9,99</span></div>
+        <div class="price-chip"><span class="from">tênis por</span><span class="price">R$&nbsp;49,99</span></div>
+        <div class="price-chip"><span class="from">calça jeans</span><span class="price">R$&nbsp;49,99</span></div>
+      </div>
+      <div class="hero-actions">
+        <button class="btn-primary btn-hero" onclick="scrollToSection('produtos')">
+          <i class="fas fa-shopping-bag"></i> Comprar Agora
+        </button>
+        <button class="btn-outline" onclick="scrollToSection('promocoes')">
+          <i class="fas fa-tag"></i> Ver Promoções
+        </button>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="visual-frame">
+        <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=600&q=80" alt="Loja Saldão Marília" class="hero-img"/>
+        <div class="img-overlay"></div>
+        <div class="img-badge">
+          <span class="badge-percent">70%</span>
+          <span class="badge-off">OFF</span>
+        </div>
+      </div>
+      <div style="position:absolute;inset:-20px;pointer-events:none;z-index:-1">
+        <div class="deco-circle deco-1"></div>
+        <div class="deco-circle deco-2"></div>
+        <div class="deco-line"></div>
+      </div>
+    </div>
+  </div>
+  <div class="stats-bar">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat"><span class="stat-value">10+</span><span class="stat-label">Anos de Experiência</span></div>
+        <div class="stat"><span class="stat-value">5mil+</span><span class="stat-label">Clientes Satisfeitos</span></div>
+        <div class="stat"><span class="stat-value">1000+</span><span class="stat-label">Produtos em Estoque</span></div>
+        <div class="stat"><span class="stat-value">100%</span><span class="stat-label">Preço Justo</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator" onclick="scrollToSection('produtos')"><i class="fas fa-chevron-down"></i></div>
+</section>
+
+<!-- ===================== PRODUCTS ===================== -->
+<section class="products" id="produtos">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Produtos em Destaque</span>
+      <h2 class="section-title">PREÇOS QUE <span class="text-yellow">CABEM</span> NO BOLSO</h2>
+      <p class="section-desc">Confira nossa seleção de produtos com os melhores preços de Marília!</p>
+    </div>
+    <div class="category-filter reveal">
+      <button class="filter-btn active" onclick="filterProducts('todos',this)">Todos</button>
+      <button class="filter-btn" onclick="filterProducts('masculino',this)">Masculino</button>
+      <button class="filter-btn" onclick="filterProducts('feminino',this)">Feminino</button>
+      <button class="filter-btn" onclick="filterProducts('infantil',this)">Infantil</button>
+      <button class="filter-btn" onclick="filterProducts('calcados',this)">Calçados</button>
+    </div>
+    <div class="products-grid" id="productsGrid"></div>
+    <div class="products-cta reveal">
+      <p>Quer ver mais produtos? Fale conosco pelo WhatsApp!</p>
+      <a href="https://wa.me/5514991677085" target="_blank" class="btn-primary">
+        <i class="fab fa-whatsapp"></i> Ver Mais Produtos
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROMOTIONS ===================== -->
+<section class="promotions" id="promocoes">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Ofertas Imperdíveis</span>
+      <h2 class="section-title">PROMOÇÕES <span style="color:var(--yellow)">EXPLOSIVAS</span></h2>
+    </div>
+    <div class="countdown-banner reveal">
+      <div class="countdown-left">
+        <i class="fas fa-clock pulse-icon"></i>
+        <div>
+          <span class="countdown-title">OFERTA RELÂMPAGO</span>
+          <span class="countdown-sub">Termina hoje à meia-noite!</span>
+        </div>
+      </div>
+      <div class="countdown-timer">
+        <div class="time-block"><span class="time-num" id="ctHours">00</span><span class="time-label">horas</span></div>
+        <span class="time-sep">:</span>
+        <div class="time-block"><span class="time-num" id="ctMins">00</span><span class="time-label">min</span></div>
+        <span class="time-sep">:</span>
+        <div class="time-block"><span class="time-num" id="ctSecs">00</span><span class="time-label">seg</span></div>
+      </div>
+      <button class="btn-primary" onclick="window.open('https://wa.me/5514991677085','_blank')">
+        <i class="fas fa-bolt"></i> Aproveitar!
+      </button>
+    </div>
+    <div class="banners-grid">
+      <div class="promo-banner promo-red reveal">
+        <div class="banner-icon"><i class="fas fa-fire" style="color:#FF1744"></i></div>
+        <h3 class="banner-title">Mega Saldão da Semana</h3>
+        <span class="banner-subtitle">Até 70% de desconto em toda a loja</span>
+        <p class="banner-desc">Aproveite os melhores preços do ano! Estoque limitado.</p>
+        <button class="banner-cta" onclick="window.open('https://wa.me/5514991677085','_blank')">Aproveitar Agora <i class="fas fa-arrow-right"></i></button>
+        <div class="banner-deco"></div>
+      </div>
+      <div class="promo-banner promo-yellow reveal" style="animation-delay:.15s">
+        <div class="banner-icon"><i class="fas fa-tags" style="color:var(--yellow)"></i></div>
+        <h3 class="banner-title">Leve 3 e Pague 2</h3>
+        <span class="banner-subtitle">Em toda linha de camisetas</span>
+        <p class="banner-desc">Compre 3 peças e pague apenas 2. Válido enquanto durar o estoque.</p>
+        <button class="banner-cta" onclick="window.open('https://wa.me/5514991677085','_blank')">Ver Camisetas <i class="fas fa-arrow-right"></i></button>
+        <div class="banner-deco"></div>
+      </div>
+      <div class="promo-banner promo-dark reveal" style="animation-delay:.3s">
+        <div class="banner-icon"><i class="fas fa-star" style="color:#fff"></i></div>
+        <h3 class="banner-title">Novidades Toda Semana</h3>
+        <span class="banner-subtitle">Lançamentos em moda masculina, feminina e infantil</span>
+        <p class="banner-desc">Siga o @saldaomarilia e fique por dentro de todas as novidades.</p>
+        <button class="banner-cta" onclick="window.open('https://instagram.com/saldaomarilia','_blank')">Ver Instagram <i class="fas fa-arrow-right"></i></button>
+        <div class="banner-deco"></div>
+      </div>
+      <div class="promo-banner promo-orange reveal" style="animation-delay:.45s">
+        <div class="banner-icon"><i class="fas fa-bolt" style="color:#FF6F00"></i></div>
+        <h3 class="banner-title">Estoque Limitado!</h3>
+        <span class="banner-subtitle">Peças selecionadas com desconto especial</span>
+        <p class="banner-desc">Últimas unidades disponíveis. Garanta o seu antes que acabe!</p>
+        <button class="banner-cta" onclick="window.open('https://wa.me/5514991677085','_blank')">Garantir o Meu <i class="fas fa-arrow-right"></i></button>
+        <div class="banner-deco"></div>
+      </div>
+    </div>
+    <div class="highlights-strip reveal">
+      <div class="highlight"><i class="fas fa-truck"></i><span>Retirada na Loja</span></div>
+      <div class="divider-v"></div>
+      <div class="highlight"><i class="fas fa-shield-alt"></i><span>Qualidade Garantida</span></div>
+      <div class="divider-v"></div>
+      <div class="highlight"><i class="fas fa-percentage"></i><span>Sempre em Promoção</span></div>
+      <div class="divider-v"></div>
+      <div class="highlight"><i class="fab fa-whatsapp"></i><span>Atendimento pelo Zap</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== REVIEWS ===================== -->
+<section class="reviews" id="avaliacoes">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Avaliações</span>
+      <h2 class="section-title">O QUE NOSSOS <span style="color:var(--yellow)">CLIENTES</span> DIZEM</h2>
+      <div class="rating-summary">
+        <div class="big-rating">
+          <span class="rating-num">5.0</span>
+          <div class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <span class="rating-count">+500 avaliações</span>
+        </div>
+      </div>
+    </div>
+    <div class="reviews-grid" id="reviewsGrid"></div>
+  </div>
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section class="about" id="sobre">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal-l">
+        <div class="visual-stack">
+          <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=600&q=80" alt="Loja Saldão Marília" class="about-img main-img"/>
+          <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=400&q=80" alt="Produtos" class="about-img secondary-img"/>
+          <div class="years-badge">
+            <span class="years-num">10+</span>
+            <span class="years-text">Anos no Mercado</span>
+          </div>
+        </div>
+      </div>
+      <div class="about-text reveal-r">
+        <span class="section-label">Sobre Nós</span>
+        <h2 class="section-title about-title">A MELHOR MODA DE <span class="text-yellow" style="color:#B8960C">MARÍLIA</span></h2>
+        <p class="about-desc">A <strong>Saldão Marília</strong> é uma loja especializada em roupas e acessórios com preços acessíveis. Trabalhamos com moda masculina, feminina e infantil, sempre trazendo novidades e promoções para nossos clientes.</p>
+        <p class="about-desc">Localizada no coração de Marília, nossa loja oferece uma grande variedade de produtos com o melhor custo-benefício da região. Nossa missão é vestir você e sua família com qualidade e preço justo!</p>
+        <div class="features-grid">
+          <div class="feature"><div class="feature-icon"><i class="fas fa-tshirt"></i></div><div class="feature-text"><h4>Moda Completa</h4><p>Masculino, feminino e infantil em um só lugar.</p></div></div>
+          <div class="feature"><div class="feature-icon"><i class="fas fa-tag"></i></div><div class="feature-text"><h4>Preço Justo</h4><p>Os melhores preços de moda em Marília/SP.</p></div></div>
+          <div class="feature"><div class="feature-icon"><i class="fas fa-sync-alt"></i></div><div class="feature-text"><h4>Novidades Sempre</h4><p>Estoque renovado toda semana com lançamentos.</p></div></div>
+          <div class="feature"><div class="feature-icon"><i class="fas fa-heart"></i></div><div class="feature-text"><h4>Atendimento Especial</h4><p>Equipe pronta para te ajudar a escolher.</p></div></div>
+        </div>
+        <a href="https://wa.me/5514991677085" target="_blank" class="btn-primary"><i class="fab fa-whatsapp"></i> Fale Conosco</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LOCATION ===================== -->
+<section class="location" id="localizacao">
+  <div class="container">
+    <div class="location-grid">
+      <div class="location-info reveal-l">
+        <span class="section-label">Localização</span>
+        <h2 class="section-title loc-title">NOS ENCONTRE <span class="text-yellow">AQUI</span></h2>
+        <div class="info-cards">
+          <div class="info-card"><div class="info-icon"><i class="fas fa-map-marker-alt"></i></div><div><span class="info-label">Endereço</span><span class="info-value">Av. Sampaio Vidal, 734</span><span class="info-sub">Centro, Marília/SP</span></div></div>
+          <div class="info-card"><div class="info-icon"><i class="fas fa-clock"></i></div><div><span class="info-label">Horário de Funcionamento</span><span class="info-value">Segunda a Sábado</span><span class="info-sub">09h às 19h</span></div></div>
+          <div class="info-card"><div class="info-icon"><i class="fab fa-whatsapp"></i></div><div><span class="info-label">Atendimento WhatsApp</span><span class="info-value">(14) 99167-7085</span><span class="info-sub">Respondemos rapidinho!</span></div></div>
+        </div>
+        <button class="btn-primary" onclick="window.open('https://maps.google.com/?q=Av.+Sampaio+Vidal,+734,+Marília,+SP','_blank')">
+          <i class="fas fa-directions"></i> Como Chegar
+        </button>
+      </div>
+      <div class="location-map reveal-r">
+        <div class="map-wrapper">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3703.5!2d-49.9462!3d-22.2139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94bf3a1cdfc5a4a3%3A0x73fb7b6742b72e2b!2sAv.+Sampaio+Vidal%2C+734+-+Centro%2C+Mar%C3%ADlia+-+SP!5e0!3m2!1spt-BR!2sbr!4v1700000000000" width="100%" height="100%" style="border:0" allowfullscreen loading="lazy" title="Saldão Marília"></iframe>
+          <div class="map-overlay-label"><i class="fas fa-store"></i><span>Saldão Marília</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section class="contact" id="contato">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Contato</span>
+      <h2 class="section-title">FALE COM A <span style="color:var(--yellow)">GENTE</span></h2>
+      <p class="section-desc">Estamos prontos para atender você pelos nossos canais de comunicação.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="channels-list reveal">
+        <a href="https://wa.me/5514991677085" target="_blank" class="channel-card">
+          <div class="ch-icon" style="background:rgba(37,211,102,.15);border-color:rgba(37,211,102,.4)"><i class="fab fa-whatsapp" style="color:#25D366"></i></div>
+          <div class="ch-info"><span class="ch-label">WhatsApp</span><span class="ch-value">(14) 99167-7085</span><span class="ch-desc">Atendimento rápido e direto</span></div>
+          <i class="fas fa-external-link-alt ch-arrow"></i>
+        </a>
+        <a href="https://instagram.com/saldaomarilia" target="_blank" class="channel-card">
+          <div class="ch-icon" style="background:rgba(225,48,108,.15);border-color:rgba(225,48,108,.4)"><i class="fab fa-instagram" style="color:#E1306C"></i></div>
+          <div class="ch-info"><span class="ch-label">Instagram</span><span class="ch-value">@saldaomarilia</span><span class="ch-desc">Siga e veja as novidades</span></div>
+          <i class="fas fa-external-link-alt ch-arrow"></i>
+        </a>
+        <a href="https://maps.google.com/?q=Av.+Sampaio+Vidal,+734,+Marília,+SP" target="_blank" class="channel-card">
+          <div class="ch-icon" style="background:rgba(255,214,0,.15);border-color:rgba(255,214,0,.4)"><i class="fas fa-map-marker-alt" style="color:#FFD600"></i></div>
+          <div class="ch-info"><span class="ch-label">Endereço</span><span class="ch-value">Av. Sampaio Vidal, 734</span><span class="ch-desc">Centro, Marília/SP</span></div>
+          <i class="fas fa-external-link-alt ch-arrow"></i>
+        </a>
+      </div>
+      <div class="whatsapp-cta reveal">
+        <div class="cta-inner">
+          <div class="cta-icon-wrap"><i class="fab fa-whatsapp"></i></div>
+          <h3 class="cta-title">Atendimento pelo WhatsApp</h3>
+          <p class="cta-desc">Nossa equipe está pronta para te atender, tirar dúvidas e te ajudar a encontrar o produto ideal com o melhor preço!</p>
+          <div class="cta-hours"><i class="fas fa-clock"></i><span>Segunda a Sábado — 09h às 19h</span></div>
+          <button class="btn-whatsapp" onclick="window.open('https://wa.me/5514991677085?text=Olá!%20Vi%20o%20site%20e%20gostaria%20de%20saber%20mais!','_blank')">
+            <i class="fab fa-whatsapp"></i> Chamar no WhatsApp Agora
+          </button>
+          <span class="cta-tip">Resposta rápida garantida!</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="logo-saldao">SALDÃO</span>
+            <span class="logo-marilia">MARÍLIA</span>
+          </div>
+          <p class="brand-desc">Moda para todos os estilos com preços que cabem no bolso. Qualidade e variedade em Marília/SP desde 2014.</p>
+          <div class="social-links">
+            <a href="https://wa.me/5514991677085" target="_blank" class="social-link wpp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://instagram.com/saldaomarilia" target="_blank" class="social-link ig" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h4 class="footer-heading">Navegação</h4>
+          <ul class="footer-links">
+            <li><a onclick="scrollToSection('inicio')"><i class="fas fa-chevron-right"></i> Início</a></li>
+            <li><a onclick="scrollToSection('produtos')"><i class="fas fa-chevron-right"></i> Produtos</a></li>
+            <li><a onclick="scrollToSection('promocoes')"><i class="fas fa-chevron-right"></i> Promoções</a></li>
+            <li><a onclick="scrollToSection('sobre')"><i class="fas fa-chevron-right"></i> Sobre Nós</a></li>
+            <li><a onclick="scrollToSection('contato')"><i class="fas fa-chevron-right"></i> Contato</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4 class="footer-heading">Informações</h4>
+          <ul class="footer-info-list">
+            <li><i class="fas fa-map-marker-alt"></i><span>Av. Sampaio Vidal, 734<br>Centro, Marília/SP</span></li>
+            <li><i class="fab fa-whatsapp"></i><span>(14) 99167-7085</span></li>
+            <li><i class="fab fa-instagram"></i><span>@saldaomarilia</span></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4 class="footer-heading">Horário</h4>
+          <ul class="footer-hours-list">
+            <li><span class="day-range">Segunda a Sábado</span><span class="hours">09h às 19h</span></li>
+            <li><span class="day-range">Domingo</span><span class="hours closed">Fechado</span></li>
+          </ul>
+          <div class="open-now"><span class="open-dot"></span><span>Aberto Agora!</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <span>© 2026 Saldão Marília. Todos os direitos reservados.</span>
+      <span>Desenvolvido com <i class="fas fa-heart"></i> em Marília/SP</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== WHATSAPP FLOAT ===================== -->
+<div class="whatsapp-float" id="wppFloat">
+  <div class="wpp-tooltip" id="wppTooltip">Fale conosco! 👋</div>
+  <button class="float-btn" onclick="window.open('https://wa.me/5514991677085?text=Olá!%20Vi%20o%20site%20e%20gostaria%20de%20saber%20mais!','_blank')" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="pulse-ring"></span>
+  </button>
+</div>
+
+<script>
+/* =============================================
+   PRODUCTS DATA
+   ============================================= */
+const products = [
+  { id:1, name:'Camiseta Básica Premium', price:9.99, oldPrice:24.99, image:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&q=80', tag:'QUEIMA!', tagColor:'#FF1744', category:'masculino' },
+  { id:2, name:'Calça Jeans Slim Fit', price:49.99, oldPrice:89.99, image:'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400&q=80', tag:'-44% OFF', tagColor:'#FF6F00', category:'masculino' },
+  { id:3, name:'Tênis Esportivo Urban', price:49.99, oldPrice:129.99, image:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&q=80', tag:'IMPERDÍVEL', tagColor:'#FF1744', category:'calcados' },
+  { id:4, name:'Vestido Floral Verão', price:29.99, oldPrice:59.99, image:'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=400&q=80', tag:'-50% OFF', tagColor:'#E91E8C', category:'feminino' },
+  { id:5, name:'Conjunto Infantil Colorido', price:19.99, oldPrice:39.99, image:'https://images.unsplash.com/photo-1519457431-44ccd64a579b?w=400&q=80', tag:'PROMOÇÃO', tagColor:'#FF6F00', category:'infantil' },
+  { id:6, name:'Blusa Feminina Listrada', price:14.99, oldPrice:34.99, image:'https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=400&q=80', tag:'-57% OFF', tagColor:'#E91E8C', category:'feminino' },
+  { id:7, name:'Bermuda Masculina Cargo', price:34.99, oldPrice:69.99, image:'https://images.unsplash.com/photo-1591195853828-11db59a44f43?w=400&q=80', tag:'OFERTA', tagColor:'#FF6F00', category:'masculino' },
+  { id:8, name:'Sandália Feminina Confort', price:39.99, oldPrice:79.99, image:'https://images.unsplash.com/photo-1535043934128-cf0b28d52f95?w=400&q=80', tag:'-50% OFF', tagColor:'#E91E8C', category:'calcados' },
+];
+
+function renderProducts(filter='todos'){
+  const grid = document.getElementById('productsGrid');
+  const filtered = filter === 'todos' ? products : products.filter(p => p.category === filter);
+  grid.innerHTML = filtered.map((p,i) => {
+    const disc = p.oldPrice ? Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100) : 0;
+    return `
+    <div class="product-card reveal" style="animation-delay:${i*0.08}s">
+      ${p.tag ? `<div class="card-badge" style="background:${p.tagColor}">${p.tag}</div>` : ''}
+      <div class="card-image">
+        <img src="${p.image}" alt="${p.name}" loading="lazy"/>
+        <div class="card-overlay">
+          <button class="overlay-btn" onclick="buyProduct('${p.name}')">
+            <i class="fab fa-whatsapp"></i> Pedir pelo WhatsApp
+          </button>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-category">${p.category}</span>
+        <h3 class="card-name">${p.name}</h3>
+        <div class="card-pricing">
+          ${p.oldPrice ? `<span class="card-old-price">R$ ${p.oldPrice.toFixed(2)}</span>` : ''}
+          <div class="card-price-row">
+            <span class="card-price">R$ ${p.price.toFixed(2)}</span>
+            ${disc > 0 ? `<span class="discount-badge">-${disc}%</span>` : ''}
+          </div>
+        </div>
+        <button class="btn-buy" onclick="buyProduct('${p.name}')">
+          <i class="fas fa-shopping-cart"></i> Comprar
+        </button>
+      </div>
+    </div>`;
+  }).join('');
+  // Re-observe new elements
+  grid.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+
+function filterProducts(cat, btn){
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderProducts(cat);
+}
+
+function buyProduct(name){
+  const msg = encodeURIComponent(`Olá! Tenho interesse no produto: ${name}. Ainda está disponível?`);
+  window.open(`https://wa.me/5514991677085?text=${msg}`, '_blank');
+}
+
+/* =============================================
+   REVIEWS DATA
+   ============================================= */
+const reviews = [
+  { name:'Ana Clara S.', avatar:'AC', avatarColor:'#FF1744', rating:5, text:'Comprei várias camisetas e fiquei impressionada com o preço e a qualidade! A loja é muito organizada e os atendentes são super atenciosos. Com certeza voltarei mais vezes.', date:'Janeiro 2026', product:'Camisetas' },
+  { name:'João Paulo M.', avatar:'JP', avatarColor:'#FFD600', rating:5, text:'Encontrei um tênis excelente por apenas R$ 49,99! Qualidade ótima, super confortável. O Saldão Marília é o melhor custo-benefício da cidade. Super recomendo!', date:'Dezembro 2025', product:'Tênis' },
+  { name:'Fernanda R.', avatar:'FR', avatarColor:'#E91E8C', rating:5, text:'Sempre que preciso de roupa vou no Saldão Marília. Preços incríveis, variedade enorme e sempre tem promoção. Comprei calça jeans por R$ 49,99 e é maravilhosa!', date:'Fevereiro 2026', product:'Calça Jeans' },
+  { name:'Carlos D.', avatar:'CD', avatarColor:'#2196F3', rating:5, text:'Melhor loja de roupas de Marília! Compro lá faz anos. Os preços são realmente muito bons e a qualidade surpreende. Indico para todo mundo!', date:'Março 2026', product:'Roupas em Geral' },
+  { name:'Mariana T.', avatar:'MT', avatarColor:'#9C27B0', rating:5, text:'Comprei roupas para toda a família e gastei muito pouco. Moda infantil com preços ótimos! O atendimento pelo WhatsApp foi super rápido e eficiente.', date:'Março 2026', product:'Moda Infantil' },
+  { name:'Roberto L.', avatar:'RL', avatarColor:'#FF6F00', rating:4, text:'Boa variedade de produtos e preços honestos. Já comprei diversas peças lá e nunca me decepcionei. A loja sempre está bem abastecida com novidades.', date:'Abril 2026', product:'Roupas Masculinas' },
+];
+
+function renderReviews(){
+  const grid = document.getElementById('reviewsGrid');
+  grid.innerHTML = reviews.map((r,i) => `
+    <div class="review-card reveal" style="animation-delay:${i*0.1}s">
+      <div class="review-header">
+        <div class="avatar" style="background:${r.avatarColor}">${r.avatar}</div>
+        <div class="reviewer-info">
+          <span class="reviewer-name">${r.name}</span>
+          <span class="review-product">${r.product}</span>
+        </div>
+        <span class="review-date">${r.date}</span>
+      </div>
+      <div class="review-stars">${'<i class="fas fa-star"></i>'.repeat(r.rating)}</div>
+      <p class="review-text">"${r.text}"</p>
+      <div class="verified-badge"><i class="fas fa-check-circle"></i> Compra Verificada</div>
+    </div>`).join('');
+  grid.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+
+/* =============================================
+   COUNTDOWN
+   ============================================= */
+function updateCountdown(){
+  const now = new Date();
+  const end = new Date(now); end.setHours(23,59,59,0);
+  const diff = end - now;
+  const h = Math.floor(diff/3600000);
+  const m = Math.floor((diff%3600000)/60000);
+  const s = Math.floor((diff%60000)/1000);
+  document.getElementById('ctHours').textContent = String(h).padStart(2,'0');
+  document.getElementById('ctMins').textContent  = String(m).padStart(2,'0');
+  document.getElementById('ctSecs').textContent  = String(s).padStart(2,'0');
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+/* =============================================
+   SCROLL REVEAL
+   ============================================= */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+
+function initObserver(){
+  document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el => observer.observe(el));
+}
+
+/* =============================================
+   HEADER SCROLL
+   ============================================= */
+window.addEventListener('scroll', () => {
+  document.getElementById('mainHeader').classList.toggle('scrolled', window.scrollY > 50);
+  document.getElementById('wppFloat').classList.toggle('visible', window.scrollY > 300);
+});
+
+/* =============================================
+   MOBILE MENU
+   ============================================= */
+function toggleMenu(){
+  const menu = document.getElementById('mobileMenu');
+  const overlay = document.getElementById('mobileOverlay');
+  const ham = document.getElementById('hamburger');
+  const open = menu.classList.toggle('active');
+  overlay.classList.toggle('active', open);
+  ham.classList.toggle('active', open);
+}
+function closeMenu(){
+  document.getElementById('mobileMenu').classList.remove('active');
+  document.getElementById('mobileOverlay').classList.remove('active');
+  document.getElementById('hamburger').classList.remove('active');
+}
+
+/* =============================================
+   WHATSAPP TOOLTIP
+   ============================================= */
+const wppFloat = document.getElementById('wppFloat');
+wppFloat.addEventListener('mouseenter', () => document.getElementById('wppTooltip').classList.add('show'));
+wppFloat.addEventListener('mouseleave', () => document.getElementById('wppTooltip').classList.remove('show'));
+
+/* =============================================
+   SCROLL TO SECTION
+   ============================================= */
+function scrollToSection(id){
+  const el = document.getElementById(id);
+  if(el) el.scrollIntoView({ behavior:'smooth' });
+}
+
+/* =============================================
+   INIT
+   ============================================= */
+document.addEventListener('DOMContentLoaded', () => {
+  renderProducts();
+  renderReviews();
+  initObserver();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<section class="contact" id="contato">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Contato</span>
+      <h2 class="section-title">
+        FALE COM A <span class="text-yellow">GENTE</span>
+      </h2>
+      <p class="section-desc">Estamos prontos para atender você pelos nossos canais de comunicação.</p>
+    </div>
+
+    <div class="contact-grid">
+      <!-- Channels -->
+      <div class="channels-list reveal">
+        <a
+          *ngFor="let ch of channels; let i = index"
+          [href]="ch.link"
+          target="_blank"
+          class="channel-card"
+          [style.animation-delay]="(i * 0.1) + 's'"
+        >
+          <div class="ch-icon" [style.background]="ch.color + '22'" [style.border-color]="ch.color + '44'">
+            <i [class]="ch.icon" [style.color]="ch.color"></i>
+          </div>
+          <div class="ch-info">
+            <span class="ch-label">{{ ch.label }}</span>
+            <span class="ch-value">{{ ch.value }}</span>
+            <span class="ch-desc">{{ ch.desc }}</span>
+          </div>
+          <i class="fas fa-external-link-alt ch-arrow"></i>
+        </a>
+      </div>
+
+      <!-- WhatsApp CTA -->
+      <div class="whatsapp-cta reveal">
+        <div class="cta-inner">
+          <div class="cta-icon-wrap">
+            <i class="fab fa-whatsapp"></i>
+          </div>
+          <h3 class="cta-title">Atendimento pelo WhatsApp</h3>
+          <p class="cta-desc">
+            Nossa equipe está pronta para te atender, tirar dúvidas e te ajudar a encontrar
+            o produto ideal com o melhor preço!
+          </p>
+          <div class="cta-hours">
+            <i class="fas fa-clock"></i>
+            <span>Segunda a Sábado — 09h às 19h</span>
+          </div>
+          <button class="btn-whatsapp" (click)="openWhatsapp()">
+            <i class="fab fa-whatsapp"></i>
+            Chamar no WhatsApp Agora
+          </button>
+          <span class="cta-tip">Resposta rápida garantida!</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

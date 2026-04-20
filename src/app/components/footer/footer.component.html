@@ -1,0 +1,87 @@
+<footer class="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Brand -->
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="logo-saldao">SALDÃO</span>
+            <span class="logo-marilia">MARÍLIA</span>
+          </div>
+          <p class="brand-desc">
+            Moda para todos os estilos com preços que cabem no bolso.
+            Qualidade e variedade em Marília/SP desde 2014.
+          </p>
+          <div class="social-links">
+            <a href="https://wa.me/5514991677085" target="_blank" class="social-link whatsapp" title="WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="https://instagram.com/saldaomarilia" target="_blank" class="social-link instagram" title="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://facebook.com" target="_blank" class="social-link facebook" title="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="footer-section">
+          <h4 class="footer-heading">Navegação</h4>
+          <ul class="footer-links">
+            <li *ngFor="let link of links">
+              <a (click)="scrollTo(link.section)">
+                <i class="fas fa-chevron-right"></i> {{ link.label }}
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Info -->
+        <div class="footer-section">
+          <h4 class="footer-heading">Informações</h4>
+          <ul class="footer-info">
+            <li>
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Av. Sampaio Vidal, 734<br>Centro, Marília/SP</span>
+            </li>
+            <li>
+              <i class="fab fa-whatsapp"></i>
+              <span>(14) 99167-7085</span>
+            </li>
+            <li>
+              <i class="fab fa-instagram"></i>
+              <span>&#64;saldaomarilia</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Hours -->
+        <div class="footer-section">
+          <h4 class="footer-heading">Horário</h4>
+          <ul class="footer-hours">
+            <li>
+              <span class="day-range">Segunda a Sábado</span>
+              <span class="hours">09h às 19h</span>
+            </li>
+            <li>
+              <span class="day-range">Domingo</span>
+              <span class="hours closed">Fechado</span>
+            </li>
+          </ul>
+          <div class="open-now">
+            <span class="open-dot"></span>
+            <span>Aberto Agora!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container">
+      <span>© {{ currentYear }} Saldão Marília. Todos os direitos reservados.</span>
+      <span>Desenvolvido com <i class="fas fa-heart"></i> em Marília/SP</span>
+    </div>
+  </div>
+</footer>

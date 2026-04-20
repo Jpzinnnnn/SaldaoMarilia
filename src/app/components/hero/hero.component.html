@@ -1,0 +1,84 @@
+<section class="hero" id="inicio">
+  <!-- Background elements -->
+  <div class="hero-bg">
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
+    <div class="bg-stripes"></div>
+  </div>
+
+  <!-- Floating tags -->
+  <div class="floating-tags">
+    <span class="tag tag-1"><i class="fas fa-fire"></i> Queima Estoque</span>
+    <span class="tag tag-2"><i class="fas fa-percent"></i> Até 70% OFF</span>
+    <span class="tag tag-3"><i class="fas fa-star"></i> Mais Vendidos</span>
+    <span class="tag tag-4"><i class="fas fa-truck"></i> Retirada na Loja</span>
+  </div>
+
+  <div class="container hero-content">
+    <div class="hero-text">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-badge"><i class="fas fa-bolt"></i> PROMOÇÕES TODOS OS DIAS</span>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="title-line-1">MODA PARA</span>
+        <span class="title-line-2">TODOS OS</span>
+        <span class="title-line-3">ESTILOS</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Camisetas, calças jeans, tênis, conjuntos e muito mais com <strong>preços imperdíveis</strong> em Marília/SP.
+      </p>
+
+      <div class="hero-prices">
+        <div class="price-chip"><span class="from">a partir de</span> <span class="price">R$&nbsp;9,99</span></div>
+        <div class="price-chip"><span class="from">tênis por</span> <span class="price">R$&nbsp;49,99</span></div>
+        <div class="price-chip"><span class="from">calça jeans</span> <span class="price">R$&nbsp;49,99</span></div>
+      </div>
+
+      <div class="hero-actions">
+        <button class="btn-primary btn-hero" (click)="scrollTo('produtos')">
+          <i class="fas fa-shopping-bag"></i> Comprar Agora
+        </button>
+        <button class="btn-outline btn-hero-outline" (click)="scrollTo('promocoes')">
+          <i class="fas fa-tag"></i> Ver Promoções
+        </button>
+      </div>
+    </div>
+
+    <!-- Hero Visual -->
+    <div class="hero-visual">
+      <div class="visual-frame">
+        <img
+          src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=600&q=80"
+          alt="Loja de roupas Saldão Marília"
+          class="hero-img"
+        />
+        <div class="img-overlay"></div>
+
+      </div>
+      <div class="visual-decoration">
+        <div class="deco-circle deco-1"></div>
+        <div class="deco-circle deco-2"></div>
+        <div class="deco-line deco-3"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats bar -->
+  <div class="stats-bar">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat" *ngFor="let stat of stats">
+          <span class="stat-value">{{ stat.value }}</span>
+          <span class="stat-label">{{ stat.label }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="scroll-indicator" (click)="scrollTo('produtos')">
+    <i class="fas fa-chevron-down"></i>
+  </div>
+</section>
